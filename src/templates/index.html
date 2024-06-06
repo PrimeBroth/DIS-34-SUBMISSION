@@ -1,0 +1,65 @@
+{% extends "navbar.html" %} {% block content %}
+<!--div with left and right column-->
+<div class="row">
+  <div class="column">
+    <img src="/static/splash.png" alt="Dikumon" style="width:50%"/>
+  </div>
+  <div class="column">
+    <h1>DIKUDEX</h1>
+    <h2>Search and create DIKUMON</h2>
+  </div>
+</div>
+<br>
+<div class="querybox">
+  <a href="/random_dikumon">
+    <input type="submit" id="button" value="Random DIKUMON" />
+  </a>
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<form action="" method="post" class="queryform">
+  <div class="querybox">
+  <input maxlength=100 type="text" id="form" name="dikumon" placeholder="DIKUMON name" \ />
+  <input type="submit" name="dikumon" id="button" value="Go"/>
+  </div> 
+</form>
+
+<div class="cards">
+  {%for i in range(0,length)%}
+  <a href="/dikumon/{{content[i][1]}}">
+    <div class="card">
+      <img
+        src="/static/dikumon/{{content[i][0]}}.png"
+        alt="Avatar"
+        class="image"
+      />
+      <div class="container">
+        <h4><b>Dikumon nr. {{content[i][0]}}</b></h4>
+        <p class="card-text">Name: {{content[i][1]}}</p>
+        <p class="card-text">Primary Type: {{content[i][2]}}</p>
+        <p class="card-text">Secondary Type: {{content[i][3]}}</p>
+        <p class="card-text">Stat total: {{content[i][4]}}</p>
+        <p class="card-text">HP: {{content[i][5]}}</p>
+        <p class="card-text">Attack: {{content[i][6]}}</p>
+        <p class="card-text">Defense: {{content[i][7]}}</p>
+        <p class="card-text">Special Attack: {{content[i][8]}}</p>
+        <p class="card-text">Special Defense: {{content[i][9]}}</p>
+        <p class="card-text">Speed: {{content[i][10]}}</p>
+        <p class="card-text">Generation: {{content[i][11]}}</p>
+        <p class="card-text">Legendary: {{content[i][12]}}</p>
+      </div>
+    </div>
+  </a>
+  {%endfor%}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,109 @@
+{% extends "navbar.html" %} {% block content %}
+<h1>
+  Welcome back {{username}}!
+</h1>
+<h3>
+  {{username}}'s custom DIKUMON and reviews
+</h3>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="tablecontainer">
+
+
+  <div class="tableitem">
+
+    {% if length != 0 %}
+    <div class="cards">
+      <p><b>{{username}}'s' DIKUMON</b></p>
+      {%for i in range(length)%}
+      <a href="/dikumon/{{content[i][0]}}">
+        <div class="card">
+          <img src="/static/dikumon/{{content[i][0]}}.png" alt="Avatar" class="image" />
+          <div class="container">
+            <h5><b>DIKUMON No. {{content[i][0]}}</b></h5>
+            <p class="card-text">Number: {{content[i][0]}}</p>
+            <p class="card-text">Name: {{content[i][1]}}</p>
+            <p class="card-text">Primary Type: {{content[i][2]}}</p>
+            <p class="card-text">Secondary Type: {{content[i][3]}}</p>
+            <p class="card-text">Stat Total: {{content[i][4]}}</p>
+            <p class="card-text">HP: {{content[i][5]}}</p>
+            <p class="card-text">Attack: {{content[i][6]}}</p>
+            <p class="card-text">Defense: {{content[i][7]}}</p>
+            <p class="card-text">Special Attack: {{content[i][8]}}</p>
+            <p class="card-text">Special Defense: {{content[i][9]}}</p>
+            <p class="card-text">Speed: {{content[i][10]}}</p>
+            <p class="card-text">Generation: {{content[i][11]}}</p>
+            <p class="card-text">Legendary: {{content[i][12]}}</p>
+            <form action="/delete_dikumon/{{content[i][0]}}" method="post">
+              <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+          </div>
+        </div>
+      </a>
+      {%endfor%}
+    </div>
+    </div>
+    {% else %}
+    <p><b>No DIKUMON for user {{username}}</b></p>
+    {% endif %}
+    
+    {% if length_reviews != 0 %}
+    <div class="tableitem">
+      <div class="cards">
+        <p><b>{{username}}'s reviews</b></p>
+        {%for i in range(length_reviews)%}
+        <a href="/dikumon/{{reviews[i][2]}}">
+          <div class="card">
+            <img
+              src="/static/dikumon/{{dikumon_numbers[i][1]}}.png"
+              alt="Avatar"
+              class="image"
+            />
+            <div class="container">
+              <div class="control-group">
+                <p class="card-text"><b>{{reviews[i][1]}}</b> rated {{reviews[i][2]}} a {{reviews[i][3]}}</p>
+                <p class="card-text"><i>"{{reviews[i][4]}}"</i></p>
+              </div>
+            </div>
+          </div>
+        </a>
+        <form action="/delete_review/{{reviews[i][0]}}" method="post">
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        {%endfor%}
+      </div> 
+    </div>
+    {% else %}
+    <p><b>No reviews for user {{username}}</b></p>
+    {% endif %}
+</div>
+<div>
+  <h3>GDPR compliance options</h3>
+  <form action="/delete_all_my_dikumon" method="post">
+    <button type="submit" class="btn btn-danger">Delete my DIKUMON</button>
+  </form>
+  <form action="/delete_all_my_reviews" method="post">
+    <button type="submit" class="btn btn-danger">Delete my reviews</button>
+  </form>
+  <!--form with button to delete profile and a checkbox to confirm choice-->
+  <form action="/delete_my_profile" method="post">
+    <div class="form-group">
+      <label for="confirm">I want to delete my profile</label>
+      <input type="checkbox" id="confirm" name="confirm" value="confirm">
+    </div>
+    <button type="submit" class="btn btn-danger">Delete my profile</button>
+  </form>
+
+</div>
+
+
+{% endblock content %}

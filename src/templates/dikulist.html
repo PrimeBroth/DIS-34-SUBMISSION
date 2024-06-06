@@ -1,0 +1,36 @@
+{% extends "navbar.html" %}
+
+{% block content %}
+<h1>DikuList</h1>
+<h3>Here's a list of all of the DikuMons</h3>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<form action="/dikulist" method="post" class="queryform">
+    <div class="querybox">
+        <input maxlength=100 type="text" id="form" name="search" placeholder="DIKUMON name" />
+        <input type="submit" id="button" value="Go"/>
+    </div> 
+</form>
+
+<div class="tablecontainer">
+    <div class="table" id="dikumon-list">
+        {% for item in content|sort(attribute='1') %}
+        <div class="row">
+            <a href="/dikumon/{{ item[1] }}">
+                <p class="row-text">{{ item[1] }}</p>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

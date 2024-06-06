@@ -1,0 +1,175 @@
+{% extends "navbar.html" %} {% block content %}
+<link rel="stylesheet" href="/static/login.css" type="text/css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Jost:wght@100&family=Press+Start+2P&display=swap"
+	rel="stylesheet"
+/>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<script>
+	function previewImage(event) {
+		var reader = new FileReader();
+		reader.onload = function(){
+			var output = document.getElementById('preview');
+			output.src = reader.result;
+			output.style.display = 'block';
+		};
+		reader.readAsDataURL(event.target.files[0]);
+	}
+	</script>
+
+<form action="/create" method="POST" enctype="multipart/form-data">
+	<div class="login">
+		<div class="mainDIV">
+			<div class="leftDIV">
+				<img src="/static/dikumon/1.png" alt="Avatar" class="image">
+			</div>
+			
+			<div class="middleDIV"></div>
+			<div class="rightDIV">
+				<img src="/static/dikumon/2.png" alt="Avatar" class="image">
+			</div>
+		</div>
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Create Account</h1>
+			</div>
+			<div class="login-form">
+				<div class="control-group">
+					<input
+						type="text"
+						class="login-field"
+						value=""
+						placeholder="name"
+						name="name"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="text"
+						class="login-field"
+						value=""
+						placeholder="type1"
+						name="type1"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="text"
+						class="login-field"
+						value=""
+						placeholder="type2"
+						name="type2"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="number"
+						class="login-field"
+						value=""
+						placeholder="hp"
+						name="hp"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="number"
+						class="login-field"
+						value=""
+						placeholder="attack"
+						name="attack"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="number"
+						class="login-field"
+						value=""
+						placeholder="defense"
+						name="defense"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="number"
+						class="login-field"
+						value=""
+						placeholder="sp_attack"
+						name="sp_attack"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="number"
+						class="login-field"
+						value=""
+						placeholder="sp_defense"
+						name="sp_defense"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="number"
+						class="login-field"
+						value=""
+						placeholder="speed"
+						name="speed"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="number"
+						class="login-field"
+						value=""
+						placeholder="generation"
+						name="generation"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input
+						type="text"
+						class="login-field"
+						value=""
+						placeholder="legendary"
+						name="legendary"
+					/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<div class="control-group">
+					<input type="file" name="picture" class="login-field" onchange="previewImage(event)">
+					<img id="preview" src="" alt="Image Preview" class="input-field" style="display: none;"/>
+					<label class="login-field-icon fui-user" for="login-name"></label>
+				</div>
+				<input
+					type="submit"
+					value="Create"
+					class="btn btn-primary btn-large btn-block"
+				/>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}
+

@@ -1,0 +1,80 @@
+{% extends "navbar.html" %} {% block content %}
+<h1>{{content[1]}} #{{content[0]}}</h1>
+<div class="imgdiv">
+  <img src="/static/dikumon/{{content[0]}}.png" alt="Avatar" class="imagebig" />
+</div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+                <div class="flash-message">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+<div class="tablecontainer">
+  <div class="tableitem">
+    <h4>Attributes</h4>
+    <p class="card-text">Type 1: {{content[2]}}</p>
+    {% if content[3] != None %}
+    <p class="card-text">Type 2: {{content[3]}}</p>
+    {% endif %}
+    <p class="card-text">Total: {{content[4]}}</p>
+    <p class="card-text">HP: {{content[5]}}</p>
+    <p class="card-text">Attack: {{content[6]}}</p>
+    <p class="card-text">Defense: {{content[7]}}</p>
+    <p class="card-text">Special attack: {{content[8]}}</p>
+    <p class="card-text">Special defense: {{content[9]}}</p>
+    <p class="card-text">Speed: {{content[10]}}</p>
+    <p class="card-text">Generation: {{content[11]}}</p>
+    <p class="card-text">Legendary: {{content[12]}}</p>
+  </div>
+
+  <div class="tableitem">
+    <form action="/give_review/{{content[1]}}/" method="POST">
+      <div class="login">
+        <div class="login-screen">
+          <div class="app-title">
+            <h4>Review this dikumon</h4>
+          </div>
+          <div class="login-form">
+            <div class="control-group">
+              <input type="number" class="login-field" value="" placeholder="Rating" name="rating" />
+              <label class="login-field-icon fui-user" for="login-name"></label>
+            </div>
+            <div class="control-group">
+              <input type="text" class="login-field" value="" placeholder="Review text" name="review-text" />
+              <label class="login-field-icon fui-user" for="login-name"></label>
+            </div>
+            <input type="submit" value="Post" class="btn btn-primary btn-large btn-block" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="tableitem">
+    <form action="" method="POST">
+      <div class="login">
+        <div class="login-screen">
+          <div class="app-title">
+            <h4>Other DIKUfants have said</h4>
+          </div>
+          <div class="login-form"></div>
+          {%for i in range(0,review_count)%}
+
+          <div class="control-group">
+            <p class="card-text"><b>{{reviews[i][1]}}</b> rated {{reviews[i][2]}} a {{reviews[i][3]}}</p>
+            <p class="card-text"><i>"{{reviews[i][4]}}"</i></p>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+{% endblock content %}
