@@ -8,6 +8,7 @@
 	- Ludvig Viktor Lindmark | hsm508@alumni.ku.dk
 	- Martin Grønlykke Wassman | bxq225@alumni.ku.dk
 - Pokemon is the intellectual property of nintendo. The DIKUMON project falls under fair use in the EU, as it is for educational purposes and not for profit.
+- E/R diagram is located in file `dikudex_er.pptx` in root directory of project
 
 ![](tmp/dikupic.PNG)
 
